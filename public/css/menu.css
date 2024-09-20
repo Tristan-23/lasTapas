@@ -1,0 +1,466 @@
+:root {
+  --primary-color: #dea30c;
+  --logo-rood: #a62f1e;
+  --placeholder-geel: #ffd057;
+}
+
+body {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font-family: "League Spartan", sans-serif; /* Voeg sans-serif als fallback toe */
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 3.2px;
+}
+
+.main-container {
+  display: flex;
+  width: 834px;
+  height: 1194px;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--primary-color);
+}
+
+.nav {
+  display: flex;
+  height: 263px;
+  padding: 10px 10px 0px 10px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  row-gap: 27px;
+  flex-shrink: 0;
+  align-self: stretch;
+  flex-wrap: wrap;
+  background: url(../images/tapas-achtergrond.png) lightgray 50% / cover
+    no-repeat;
+}
+
+.top-nav {
+  display: flex;
+  width: 814px;
+  padding-top: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger-button {
+  width: 64.8px;
+  height: 69.9px;
+  border: 0;
+  background: url(../images/hamburger.png) 50% / cover no-repeat;
+}
+
+.logo-container {
+  width: 99px;
+  height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--logo-rood);
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  background: url(../images/LasTapas.svg) 50% / contain no-repeat;
+}
+
+.card-container {
+  display: flex;
+  width: 213px;
+  padding: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  background-color: var(--logo-rood);
+}
+
+.card-button {
+  width: 42px;
+  height: 39px;
+  flex-shrink: 0;
+  border: 0;
+  background: url(../images/shoppingcart.png) 50% / cover no-repeat;
+}
+
+.onder-nav {
+  display: flex;
+  width: 579px;
+  height: 131px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.tapas-button {
+  display: flex;
+  height: 67px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #d85745;
+  color: #726262;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 3.2px;
+  border: 0;
+}
+
+.dessert-button {
+  display: flex;
+  height: 67px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #d85745;
+  color: #726262;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 3.2px;
+  border: 0;
+}
+
+.drinks-button {
+  display: flex;
+  height: 67px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #d85745;
+  color: #726262;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 3.2px;
+  border: 0;
+}
+
+.active {
+  background: #a72f1e;
+  color: #fff;
+}
+
+.rechts-onder-nav {
+  display: flex;
+  width: 235px;
+  height: 131px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.tijd-container {
+  display: flex;
+  width: 196px;
+  height: 47px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  color: #fff;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 3.2px;
+  background-color: var(--logo-rood);
+}
+
+.content-container {
+  display: flex;
+  height: 840px;
+  padding: 20px;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 20px 30px;
+  flex-shrink: 0;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.placeholder-container {
+  display: flex;
+  width: 244px;
+  height: 392px;
+  flex-direction: column;
+  align-items: center;
+  background: #ffd057;
+}
+
+.placeholder-boven-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.placeholder-foto-container {
+  display: flex;
+  height: 173px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  background: url(../images/Patatas-bravas.png) lightgray 50% / cover no-repeat;
+}
+
+.placeholder-name-container {
+  display: flex;
+  height: 50px;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  align-self: stretch;
+  color: #000;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2.6px;
+}
+
+.placeholder-description-container {
+  display: flex;
+  padding: 0px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  flex: 1 0 0;
+  align-self: stretch;
+  color: #000;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.8px;
+}
+
+.placeholder-onder-container {
+  display: flex;
+  padding-bottom: 10px;
+  justify-content: center;
+  align-items: flex-end;
+  align-self: stretch;
+  background: #ffd057;
+}
+
+.placeholder-orderbutton {
+  display: flex;
+  width: 200px;
+  height: 38px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #a72f1e;
+  color: #fff;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2.2px;
+}
+
+.onder-style {
+  display: flex;
+  width: 832px;
+  height: 42px;
+  left: 1px;
+  background: url(../images/onderstyle.png) 50% / cover no-repeat;
+}
+
+/* Modal styling */
+/* Container for the main content */
+.main-container {
+  position: relative; /* To position the modal relative to this container */
+}
+
+/* Modal styling */
+.modal {
+  display: none; /* Hidden by default */
+  position: absolute; /* Position relative to the .main-container */
+  right: 0; /* Align to the right side of the container */
+  top: 0;
+  width: 40%;
+  height: 1154px;
+  background-color: #ffffff; /* White background for the modal */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  z-index: 1000; /* Sit on top */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  padding: 20px; /* Padding inside the modal */
+}
+
+.modal-content {
+  width: 100%; /* Full width of the modal */
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.receipt-content {
+  margin-bottom: 20px;
+}
+
+.receipt-content p {
+  font-size: 18px;
+  margin: 8px 0;
+  color: #555;
+}
+
+.receipt-content p.total {
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+}
+
+.checkout-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase; /* Uppercase text for a professional touch */
+}
+
+.checkout-btn:hover {
+  background-color: #c38e08;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.modal-footer-tekst {
+  text-align: center;
+}
+
+.modal-footer p {
+  margin: 0;
+  font-size: 16px;
+  color: #777;
+}
+
+.sidebar {
+  display: none; /* Hidden by default */
+  position: absolute; /* Positioned relative to .main-container */
+  left: 0; /* Align to the left side of the container */
+  top: 0;
+  width: 300px; /* Adjust width as needed */
+  height: 1154px; /* Full height */
+  background-color: #ffffff; /* White background for the sidebar */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  z-index: 1001; /* Sit on top of the content */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  padding: 20px; /* Padding inside the sidebar */
+  transition: transform 0.3s ease; /* Smooth sliding effect */
+  transform: translateX(-100%); /* Start off-screen */
+}
+
+.sidebar.open {
+  display: block; /* Show sidebar */
+  transform: translateX(0); /* Slide in from the left */
+}
+
+.sidebar-content {
+  width: 100%; /* Full width of the sidebar */
+}
+
+.close-sidebar {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-sidebar:hover,
+.close-sidebar:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.request-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.server-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  margin-bottom: 15px;
+  margin-top: 100px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.request-btn:hover {
+  background-color: #c38e08;
+}

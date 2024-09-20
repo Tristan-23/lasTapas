@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/explain.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <title>Explaination</title>
+    <link rel="icon" href="../images/ace.png" type="image/png" />
+  </head>
+  <body>
+    <div class="background">
+      <div class="island card">
+        <button>
+          <i id="insert" onclick="clickCRUD(this)" class="fa-solid fa-pen"></i>
+        </button>
+        <button>
+          <i
+            id="fetch"
+            onclick="clickCRUD(this)"
+            class="fa-solid fa-book-open"
+          ></i>
+        </button>
+        <button>
+          <i
+            id="update"
+            onclick="clickCRUD(this)"
+            class="fa-solid fa-rotate-left"
+          ></i>
+        </button>
+        <button>
+          <i
+            id="delete"
+            onclick="clickCRUD(this)"
+            class="fa-solid fa-trash"
+          ></i>
+        </button>
+      </div>
+      <div class="card">
+        <div class="forum initialize">
+          <h1>Please LOGIN</h1>
+          <div id="username">
+            Username :
+            <input type="email" />
+          </div>
+          <div id="password">
+            Password :
+            <input type="password" />
+          </div>
+          <div id="re-password" style="visibility: hidden">
+            Re-Password :
+            <input type="password" />
+          </div>
+          <footer>
+            <input onclick="submitForm()" value="SUBMIT" type="button" />
+            <input onclick="switchForum()" value="SWITCH" type="button" />
+          </footer>
+        </div>
+        <div class="logo">
+          <!-- <div id="img"></div> -->
+        </div>
+      </div>
+    </div>
+    <script src="js/global/cl_request.js"></script>
+    <script src="js/cl_explain.js"></script>
+  </body>
+</html>
