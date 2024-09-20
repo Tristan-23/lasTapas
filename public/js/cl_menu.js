@@ -102,6 +102,69 @@ window.onload = function () {
   startTimer();
 };
 
+let receipt = {};
+function addToRecipt(item) {
+  const itemKey = item.menu_item;
+
+  if (item.menu_category === "Tapas" || item.menu_category === "Drinks") {
+    const totalCount = Object.values(receipt)
+      .filter(
+        (i) => i.menu_category === "Tapas" || i.menu_category === "Drinks"
+      )
+      .reduce((count, i) => count + i.quantity, 0);
+
+    if (totalCount >= 3) {
+      alert(
+        "You can only order a maximum of 3 items from Tapas and Drinks combined."
+      );
+      return;
+    }
+  }
+
+  if (receipt[itemKey]) {
+    receipt[itemKey].quantity += 1;
+  } else {
+    receipt[itemKey] = { ...item, quantity: 1 };
+  }
+
+  updateReceiptDisplay();
+}
+
+function removeFromRecipt(key) {
+  if (receipt[key]) {
+    if (receipt[key].quantity > 1) {
+      receipt[key].quantity -= 1;
+    } else {
+      delete receipt[key];
+    }
+    updateReceiptDisplay();
+  }
+}
+
+function updateReceiptDisplay() {
+  const receiptContainer = document.querySelector(".receipt-content");
+  receiptContainer.innerHTML = "";
+
+  for (const key in receipt) {
+    const item = receipt[key];
+
+    const receiptItemDiv = document.createElement("div");
+    receiptItemDiv.classList.add("receipt-item");
+
+    const receiptItemText = document.createElement("p");
+    receiptItemText.innerText = `${item.quantity}x ${item.menu_item}`;
+
+    const removeButton = document.createElement("button");
+    removeButton.innerText = "Remove";
+    removeButton.onclick = () => removeFromRecipt(key);
+
+    receiptItemDiv.appendChild(receiptItemText);
+    receiptItemDiv.appendChild(removeButton);
+
+    receiptContainer.appendChild(receiptItemDiv);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const tapasButton = document.querySelector(".tapas-button");
   const dessertButton = document.querySelector(".dessert-button");
@@ -134,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="placeholder-description-container">${item.menu_description}</div>
               </div>
               <div class="placeholder-onder-container">
-                <button class="placeholder-orderbutton">Bestel hier</button>
+                <button onclick="addToRecipt({menu_category : '${item.menu_category}',  menu_item: '${item.menu_item}', menu_price: '${item.menu_price}' })" class="placeholder-orderbutton">Bestel hier</button>
               </div>
             </div>
             <!-- Add more Tapas items if necessary -->
@@ -149,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="placeholder-description-container">${item.menu_description}</div>
               </div>
               <div class="placeholder-onder-container">
-                <button class="placeholder-orderbutton">Bestel hier</button>
+                <button onclick="addToRecipt({menu_category : '${item.menu_category}',  menu_item: '${item.menu_item}', menu_price: '${item.menu_price}' })" class="placeholder-orderbutton">Bestel hier</button>
               </div>
             </div>
             <!-- Add more Tapas items if necessary -->
@@ -164,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="placeholder-description-container">${item.menu_description}</div>
               </div>
               <div class="placeholder-onder-container">
-                <button class="placeholder-orderbutton">€${item.menu_price}</button>
+                 <button onclick="addToRecipt({menu_category : '${item.menu_category}',  menu_item: '${item.menu_item}', menu_price: '${item.menu_price}' })" class="placeholder-orderbutton">€${item.menu_price}</button>
               </div>
             </div>
             <!-- Add more Tapas items if necessary -->
