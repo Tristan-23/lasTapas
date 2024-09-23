@@ -35,7 +35,7 @@ body {
 
 .top-nav {
   display: flex;
-  width: 814px;
+  width: 100%;
   padding-top: 10px;
   justify-content: space-between;
   align-items: center;
@@ -90,7 +90,7 @@ body {
 
 .main-content-container {
   display: flex;
-  height: 800px;
+  height: 75%;
   padding: 50px;
   padding-bottom: 0;
   flex-direction: column;
@@ -111,7 +111,7 @@ body {
 
 .content-boven {
   display: flex;
-  height: 323px;
+  height: 50%;
   padding: 10px;
   justify-content: center;
   align-items: center;
@@ -137,20 +137,23 @@ body {
 
 .content-midden {
   display: flex;
-  height: 245px;
+  height: 30%;
   padding: 10px;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   align-self: stretch;
 }
 
 .content-tekst {
-  width: 645px;
-  height: 178px;
+  display: flex;
+  width: 70%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   text-align: center;
   font-family: "League Spartan";
-  font-size: 24px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -159,7 +162,7 @@ body {
 
 .content-onder {
   display: flex;
-  height: 149px;
+  height: 30%;
   padding: 10px;
   justify-content: center;
   align-items: center;
@@ -169,8 +172,8 @@ body {
 
 .start-button {
   display: flex;
-  width: 250px;
-  height: 65px;
+  width: 30%;
+  height: 25%;
   padding: 10px;
   justify-content: center;
   align-items: center;
@@ -186,12 +189,23 @@ body {
   letter-spacing: 3.2px;
   border-radius: 3px;
   border-color: white;
+  border-width: 5px;
+}
+
+.onder-container {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  justify-content: center;
+  align-self: center;
+  left: 1px;
 }
 
 .onder-style {
   display: flex;
-  width: 832px;
-  height: 42px;
-  left: 1px;
+  width: 900px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
   background: url(../images/onderstyle.png) 50% / cover no-repeat;
 }
