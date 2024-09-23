@@ -27,7 +27,8 @@ body {
 
 .nav {
   display: flex;
-  height: 263px;
+  height: 30%;
+  width: 100%;
   padding: 10px 10px 0px 10px;
   justify-content: space-between;
   align-items: flex-start;
@@ -184,9 +185,16 @@ body {
   background-color: var(--logo-rood);
 }
 
+.main-content-container {
+  display: flex;
+  height: 60%;
+  width: 100%;
+}
+
 .content-container {
   display: flex;
-  height: 840px;
+  height: 60%;
+  width: 100%;
   padding: 20px;
   align-items: flex-start;
   align-content: flex-start;
@@ -194,6 +202,7 @@ body {
   flex-shrink: 0;
   align-self: stretch;
   flex-wrap: wrap;
+  background-color: #000;
 }
 
 .placeholder-container {
