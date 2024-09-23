@@ -4,18 +4,18 @@
   --placeholder-geel: #ffd057;
 }
 
+::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
 body {
   display: flex;
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 100vh;
-  font-family: "League Spartan", sans-serif; /* Voeg sans-serif als fallback toe */
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 3.2px;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .main-container {
@@ -30,7 +30,6 @@ body {
 .nav {
   display: flex;
   width: 100%;
-  padding: 10px 10px 0px 10px;
   justify-content: space-between;
   align-items: flex-start;
   align-content: flex-start;
@@ -204,7 +203,7 @@ body {
   align-self: stretch;
   flex-wrap: wrap;
   padding-top: 20px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .placeholder-container {
