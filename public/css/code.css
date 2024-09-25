@@ -44,72 +44,116 @@ body {
   display: flex;
   width: 100%;
   height: 60%;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: 10px;
+  flex-direction: column;
 }
 
 .content-container {
   display: flex;
   width: 50%;
-  height: 30%;
+  height: auto; /* Allow height to adjust */
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
   background: #a72f1e;
+  padding: 20px;
+  box-sizing: border-box; /* Ensure padding is considered in the width */
 }
 
 .text-container {
   display: flex;
-  height: 30%;
-  width: 60%;
+  width: 80%; /* Relative width */
+  height: auto; /* Auto height to allow text wrapping */
   padding: 10px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  color: #fff;
   text-align: center;
   font-family: "League Spartan";
-  font-size: 50px;
-  font-style: normal;
+  font-size: 5vw; /* Responsive font size */
   font-weight: 700;
   line-height: normal;
-  letter-spacing: 4.24px;
-  width: 337px;
+  letter-spacing: 0.5vw; /* Adjust letter-spacing based on screen size */
+  color: #fff;
 }
 
 .input-container {
   display: flex;
-  width: 45%;
-  height: 10%;
+  width: 80%; /* Adjust input width */
+  height: auto; /* Allow height to adjust */
   padding: 10px;
-  align-items: flex-start;
-  gap: 10px;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 input {
-  display: flex;
   width: 100%;
-  height: 100%;
-  padding: 10px;
-  gap: 10px;
+  height: auto;
+  padding: 15px; /* Increase padding for better touch on mobile */
   border: 0;
   border-radius: 10px;
   background-color: white;
-  text-align: center;
-  text-align: center;
-  font-style: normal;
-  font-size: 30px;
+  font-size: 4vw; /* Responsive font size for input */
   font-weight: 700;
-  line-height: normal;
-  letter-spacing: 4.24px;
+  text-align: center;
+  letter-spacing: 2px;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .content-container {
+    width: 90%;
+  }
+
+  .text-container {
+    font-size: 6vw;
+    letter-spacing: 0.3vw;
+  }
+
+  input {
+    font-size: 5vw;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-container {
+    width: 100%;
+  }
+
+  .text-container {
+    font-size: 7vw;
+    letter-spacing: 0.2vw;
+  }
+
+  input {
+    font-size: 6vw;
+    padding: 10px;
+  }
+}
+
+.onder-style-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
+  align-items: center;
+  width: 100%;
+  height: 12%;
+}
+
+.onder-style {
+  display: flex;
+  width: 80%;
+  height: 20%;
+  margin-top: 45px;
+  justify-content: center;
+  align-items: center;
+  background: url(../images/onderstyle.png) 50% / cover no-repeat;
+}
 .logo-container {
   display: flex;
   width: 50%;
