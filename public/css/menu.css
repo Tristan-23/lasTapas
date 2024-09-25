@@ -42,7 +42,7 @@ body {
 
 .top-nav {
   display: flex;
-  width: 100%;
+  width: 99%;
   padding-top: 10px;
   justify-content: space-between;
   align-items: center;
