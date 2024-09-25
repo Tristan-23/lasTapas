@@ -1,0 +1,131 @@
+:root {
+  --primary-color: #dea30c;
+  --logo-rood: #a62f1e;
+  --placeholder-geel: #ffd057;
+}
+
+::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+body {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--primary-color);
+}
+
+.boven-container {
+  display: flex;
+  width: 100%;
+  height: 40%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  background: url(../images/tapas2.png) lightgray 50% / cover no-repeat;
+}
+
+.onder-container {
+  display: flex;
+  width: 100%;
+  height: 60%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.content-container {
+  display: flex;
+  width: 50%;
+  height: 30%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  background: #a72f1e;
+}
+
+.text-container {
+  display: flex;
+  height: 30%;
+  width: 60%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "League Spartan";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 4.24px;
+  width: 337px;
+}
+
+.input-container {
+  display: flex;
+  width: 45%;
+  height: 10%;
+  padding: 10px;
+  align-items: flex-start;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  gap: 10px;
+  border: 0;
+  border-radius: 10px;
+  background-color: white;
+  text-align: center;
+  text-align: center;
+  font-style: normal;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 4.24px;
+}
+
+.logo-container {
+  display: flex;
+  width: 50%;
+  height: 30%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  background: #a72f1e;
+  z-index: 1;
+  bottom: 50%;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  background: url(../images/LasTapas.svg) 50% / contain no-repeat;
+}
