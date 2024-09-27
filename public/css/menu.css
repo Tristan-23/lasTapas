@@ -325,7 +325,7 @@ body {
   right: 0; /* Align to the right side of the container */
   top: 0;
   width: 40%;
-  height: 1154px;
+  height: 100%;
   background-color: #ffffff; /* White background for the modal */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   z-index: 1000; /* Sit on top */
@@ -416,7 +416,7 @@ h2 {
   left: 0; /* Align to the left side of the container */
   top: 0;
   width: 300px; /* Adjust width as needed */
-  height: 1154px; /* Full height */
+  height: 100%;
   background-color: #ffffff; /* White background for the sidebar */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Shadow for depth */
   z-index: 1001; /* Sit on top of the content */
