@@ -1,6 +1,3 @@
-const baseUrl = "http://127.0.0.1:5000";
-const advancedUrl = baseUrl + "/";
-
 const modal = document.getElementById("receipt-modal");
 const cardButton = document.querySelector(".card-button");
 const closeBtn = document.querySelector(".close-btn");
@@ -258,28 +255,3 @@ document.addEventListener("DOMContentLoaded", function () {
     switchContent(drinksContent, drinksButton)
   );
 });
-
-// Fetches form user with the correct email
-// const server = "fetch";
-// const method = server === "update" ? "PATCH" : "POST";
-// const table = "users";
-// const data = {};
-// const change = {};
-
-// makeServerRequest(server, method, table, data, change).then((data) => {
-//   if (data.type === "ERROR") {
-//     test = confirm(
-//       server + " failder, " + data.msg + "! Want to see our documentation?"
-//     );
-//     if (test) {
-//       window.location.href = baseUrl + "/explain";
-//     }
-//     return;
-//   } else {
-//     console.log(data);
-//     test = confirm(server + " was a succes! Want to see our documentation?");
-//     if (test) {
-//       window.location.href = baseUrl + "/explain";
-//     }
-//   }
-// });
