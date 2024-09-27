@@ -24,9 +24,9 @@ const standardUrl = fullUrl.split("/").slice(0, 3).join("/");
 //   }
 // });
 
-function makeServerRequest(server, method, table, data, change) {
+function makeServerRequest(server, table, data, change) {
   return fetch(`${standardUrl}/${server}`, {
-    method: method,
+    method: server === "update" ? "PATCH" : "POST",
     headers: {
       "Content-type": "application/json",
     },

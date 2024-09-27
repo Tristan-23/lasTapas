@@ -58,11 +58,18 @@ if (!fs.existsSync(envFilePath)) {
 }
 
 const allowedOrigins = [
-  `${process.env.WEBSITE_URL}:${process.env.WEBSITE_PORT}`,
+  `${process.env.WEBSITE_URL}${
+    process.env.WEBSITE_PORT === "80" ? "" : `:${process.env.WEBSITE_PORT}`
+  }`,
 ];
+
 app.use(
   cors({
     origin: (origin, callback) => {
+      if (origin && process.env.DEVELOPMENT_PRINT === "true") {
+        console.log("Request origin:", origin);
+        console.log("Allowed origins:", allowedOrigins);
+      }
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {

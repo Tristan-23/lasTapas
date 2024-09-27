@@ -2,4 +2,3 @@ node_modules/
 .env
 public/css/source
 version.txt
-bkp.env

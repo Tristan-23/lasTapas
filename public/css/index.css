@@ -1,211 +1,122 @@
-:root {
-  --primary-color: #dea30c;
-  --logo-rood: #a62f1e;
-  --placeholder-geel: #ffd057;
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  list-style: none;
+  font-family: "Maax-Regular";
+  text-decoration: none;
+  color: black;
+  cursor: auto;
 }
 
+@font-face {
+  font-family: "Maax-Regular";
+  src: url(../fonts/maax-regular.woff2);
+}
+@font-face {
+  font-family: "Maax-Medium";
+  src: url(../fonts/maax-medium.woff2);
+}
+@font-face {
+  font-family: "Maax-Bold";
+  src: url(../fonts/maax-bold.woff2);
+}
 body {
-  display: flex;
-  padding: 0;
-  margin: 0;
   width: 100%;
   height: 100vh;
 }
 
-.main-container {
-  display: flex;
+.main {
   width: 100%;
   height: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: var(--primary-color);
-}
-
-.nav {
+  background-color: #f4f7f6;
   display: flex;
-  height: 263px;
-  padding: 10px 10px 0px 10px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  flex-shrink: 0;
-  align-self: stretch;
-  background: url(../images/tapas-achtergrond.png) 50% / cover no-repeat;
+  justify-content: center;
+  align-items: center;
 }
-
-.top-nav {
+.main .container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+.main .container .form-toggle {
   display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.main .container .form-toggle button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.main .container .form-toggle button.active {
+  color: #00365e;
+  border-bottom: 2px solid #00365e;
+}
+.main .container .form-toggle button:not(.active) {
+  color: #7f8c8d;
+}
+.main .container .form-toggle button:not(.active):hover {
+  color: #00365e;
+}
+.main .container .form {
+  display: none;
+}
+.main .container .form.active {
+  display: block;
+}
+.main .container .form .form-group {
+  margin-bottom: 1rem;
+  position: relative;
+}
+.main .container .form .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+}
+.main .container .form .form-group input {
   width: 100%;
-  padding-top: 10px;
-  justify-content: space-between;
-  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
 }
-
-.nav-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.main .container .form .form-group input:focus {
+  border-color: #00365e;
+  outline: none;
 }
-
-.hamburger-button {
-  width: 64.8px;
-  height: 69.9px;
-  border: 0;
-  background: url(../images/hamburger.png) 50% / cover;
+.main .container .form .form-group input:invalid {
+  border-color: #b50000;
 }
-
-.logo-container {
-  width: 99px;
-  height: 95px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--logo-rood);
+.main .container .form .form-group .error-message {
+  color: #b50000;
+  font-size: 0.875rem;
+  position: absolute;
+  bottom: -1.25rem;
+  left: 0;
+  display: none;
 }
-
-.logo {
-  width: 90px;
-  height: 90px;
-  background: url(../images/LasTapas.svg) 50% / contain no-repeat;
+.main .container .form .form-group.error .error-message {
+  display: block;
 }
-
-.card-container {
-  display: flex;
-  width: 213px;
-  padding: 10px;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  background-color: var(--logo-rood);
-}
-
-.card-button {
-  width: 42px;
-  height: 39px;
-  flex-shrink: 0;
-  border: 0;
-  background: url(../images/shoppingcart.png) 50% / cover;
-}
-
-.main-content-container {
-  display: flex;
-  height: 75%;
-  padding: 50px;
-  padding-bottom: 0;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  align-self: stretch;
-}
-
-.content-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1 0 0;
-  align-self: stretch;
-}
-
-.content-boven {
-  display: flex;
-  height: 50%;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-}
-
-.content-logo-container {
-  display: flex;
-  height: 300px;
-  width: 300px;
-  padding: 10px;
-  align-items: flex-start;
-  gap: 10px;
-  background-color: var(--logo-rood);
-}
-
-.content-logo {
-  height: 300px;
-  width: 300px;
-  background: url(../images/LasTapas.svg) 50% / contain no-repeat;
-}
-
-.content-midden {
-  display: flex;
-  height: 30%;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-}
-
-.content-tekst {
-  display: flex;
-  width: 70%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+.main .container .form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #00365e;
   color: #fff;
-  text-align: center;
-  font-family: "League Spartan";
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 2.4px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
-
-.content-onder {
-  display: flex;
-  height: 30%;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-}
-
-.start-button {
-  display: flex;
-  width: 30%;
-  height: 25%;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: var(--primary-color);
-  color: #fbfbfb;
-  text-align: center;
-  font-family: "League Spartan";
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 3.2px;
-  border-radius: 3px;
-  border-color: white;
-  border-width: 5px;
-}
-
-.onder-container {
-  display: flex;
-  width: 100%;
-  height: 10%;
-  justify-content: center;
-  align-self: center;
-  left: 1px;
-}
-
-.onder-style {
-  display: flex;
-  width: 900px;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  background: url(../images/onderstyle.png) 50% / cover no-repeat;
+.main .container .form button:hover {
+  background-color: #00192b;
 }

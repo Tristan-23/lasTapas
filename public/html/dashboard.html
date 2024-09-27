@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <title>Dashboard</title>
+    <link rel="icon" href="../images/dashboard.png" type="image/png" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Dashboard</h2>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="nav-item active" data-section=".home">
+              <a>Home</a>
+            </li>
+            <li class="nav-item" data-section="tables">
+              <a>Tables</a>
+              <ul class="submenu">
+                <li class="submenu-item" data-subsection=".all">
+                  <a>All</a>
+                </li>
+                <li class="submenu-item" data-subsection=".available">
+                  <a>Available</a>
+                </li>
+                <li class="submenu-item" data-subsection=".reserved">
+                  <a>Reserved</a>
+                </li>
+                <li class="submenu-item" data-subsection=".occupied">
+                  <a>Occupied</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-section=".notes">
+              <a>Notes</a>
+            </li>
+            <li class="nav-item" data-section="/storage">
+              <a>Storage</a>
+            </li>
+            <li class="nav-item" data-section=".settings">
+              <a>Settings</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="header">
+          <div class="header-title">
+            <h1 data-welcome="welcome">Welcome Back!</h1>
+          </div>
+          <div class="header-actions">
+            <button class="notification-btn">Notifications</button>
+            <button class="profile-btn">Profile</button>
+          </div>
+        </header>
+
+        <section class="cards" data-section="home" style="display: block">
+          <div class="card">
+            <h3>Users</h3>
+            <p>1,234</p>
+          </div>
+          <div class="card">
+            <h3>Revenue</h3>
+            <p>$12,345</p>
+          </div>
+          <div class="card">
+            <h3>Sales</h3>
+            <p>567</p>
+          </div>
+          <div class="card">
+            <h3>Growth</h3>
+            <p>23%</p>
+          </div>
+        </section>
+
+        <section class="cards" data-section="all" style="display: none">
+          <h3>Tables Section</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Label</th>
+                <th>Amount of Seats</th>
+                <th>Status</th>
+                <th>Reserved for</th>
+                <th>Last Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Tafel in de hoek</td>
+                <td>4</td>
+                <td><span class="status active">Available</span></td>
+                <td>26-09-2024 12:00</td>
+                <td>26-09-2024 24:00</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Tafel naast de bar</td>
+                <td>4</td>
+                <td><span class="status pending">Reserved</span></td>
+                <td>26-09-2024 12:00</td>
+                <td>26-09-2024 24:00</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Tafel bij de ingang</td>
+                <td>2</td>
+                <td><span class="status inactive">Occupied</span></td>
+                <td>26-09-2024 12:00</td>
+                <td>26-09-2024 24:00</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="cards" data-section="available" style="display: none">
+          <h3>Tables Section</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Label</th>
+                <th>Amount of Seats</th>
+                <th>Status</th>
+                <th>Reserved for</th>
+                <th>Last Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Tafel in de hoek</td>
+                <td>4</td>
+                <td><span class="status active">Available</span></td>
+                <td>26-09-2024 12:00</td>
+                <td>26-09-2024 24:00</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="cards" data-section="reserved" style="display: none">
+          <h3>Tables Section</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Label</th>
+                <th>Amount of Seats</th>
+                <th>Status</th>
+                <th>Reserved for</th>
+                <th>Last Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2</td>
+                <td>Tafel naast de bar</td>
+                <td>4</td>
+                <td><span class="status pending">Reserved</span></td>
+                <td>26-09-2024 12:00</td>
+                <td>26-09-2024 24:00</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="cards" data-section="occupied" style="display: none">
+          <h3>Tables Section</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Label</th>
+                <th>Amount of Seats</th>
+                <th>Status</th>
+                <th>Reserved for</th>
+                <th>Last Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3</td>
+                <td>Tafel bij de ingang</td>
+                <td>2</td>
+                <td><span class="status inactive">Occupied</span></td>
+                <td>26-09-2024 12:00</td>
+                <td>26-09-2024 24:00</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="cards" data-section="notes" style="display: none">
+          <h3>Notes Section</h3>
+          <p>This is where your notes would be displayed.</p>
+        </section>
+
+        <section class="cards" data-section="storage" style="display: none">
+          <h3>Storage Section</h3>
+          <p>This is where your storage information would be displayed.</p>
+        </section>
+
+        <section class="cards" data-section="settings" style="display: none">
+          <!-- Quick Actions -->
+          <div class="settings-actions">
+            <button class="action-btn" id="add-user-btn">Add User</button>
+            <button class="action-btn" id="manage-users-btn">
+              Manage Users
+            </button>
+            <button class="action-btn" id="change-password-btn">
+              Change Password
+            </button>
+            <button class="action-btn" id="system-settings-btn">
+              System Settings
+            </button>
+          </div>
+
+          <div class="settings-info">
+            <p>Select an action to manage your settings.</p>
+          </div>
+
+          <!-- Normal Settings -->
+          <h4>General Settings</h4>
+          <div class="settings-list">
+            <div class="setting-item">
+              <label for="notifications">Notification Settings</label>
+              <select id="notifications">
+                <option value="all">All Notifications</option>
+                <option value="mentions">Mentions Only</option>
+                <option value="none">No Notifications</option>
+              </select>
+            </div>
+
+            <div class="setting-item">
+              <label for="privacy">Privacy Settings</label>
+              <select id="privacy">
+                <option value="public">Public</option>
+                <option value="friends">Friends Only</option>
+                <option value="private">Private</option>
+              </select>
+            </div>
+
+            <div class="setting-item">
+              <label for="language">Language Preference</label>
+              <select id="language">
+                <option value="en">English</option>
+                <option value="nl">Dutch</option>
+                <option value="fr">French</option>
+              </select>
+            </div>
+
+            <div class="setting-item">
+              <label for="theme">Theme</label>
+              <select id="theme">
+                <option value="light">Light Mode</option>
+                <option value="dark">Dark Mode</option>
+              </select>
+            </div>
+
+            <div class="setting-item">
+              <label for="account-status">Account Status</label>
+              <select id="account-status">
+                <option value="active">Active</option>
+                <option value="suspended">Suspended</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="js/global/cl_request.js"></script>
+    <script src="js/cl_dashboard.js"></script>
+  </body>
+</html>

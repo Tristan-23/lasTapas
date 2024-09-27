@@ -1,0 +1,211 @@
+:root {
+  --primary-color: #dea30c;
+  --logo-rood: #a62f1e;
+  --placeholder-geel: #ffd057;
+}
+
+body {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--primary-color);
+}
+
+.nav {
+  display: flex;
+  height: 263px;
+  padding: 10px 10px 0px 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: url(../images/tapas-achtergrond.png) 50% / cover no-repeat;
+}
+
+.top-nav {
+  display: flex;
+  width: 100%;
+  padding-top: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger-button {
+  width: 64.8px;
+  height: 69.9px;
+  border: 0;
+  background: url(../images/hamburger.png) 50% / cover;
+}
+
+.logo-container {
+  width: 99px;
+  height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--logo-rood);
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  background: url(../images/LasTapas.svg) 50% / contain no-repeat;
+}
+
+.card-container {
+  display: flex;
+  width: 213px;
+  padding: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  background-color: var(--logo-rood);
+}
+
+.card-button {
+  width: 42px;
+  height: 39px;
+  flex-shrink: 0;
+  border: 0;
+  background: url(../images/shoppingcart.png) 50% / cover;
+}
+
+.main-content-container {
+  display: flex;
+  height: 75%;
+  padding: 50px;
+  padding-bottom: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.content-boven {
+  display: flex;
+  height: 50%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.content-logo-container {
+  display: flex;
+  height: 300px;
+  width: 300px;
+  padding: 10px;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: var(--logo-rood);
+}
+
+.content-logo {
+  height: 300px;
+  width: 300px;
+  background: url(../images/LasTapas.svg) 50% / contain no-repeat;
+}
+
+.content-midden {
+  display: flex;
+  height: 30%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
+.content-tekst {
+  display: flex;
+  width: 70%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "League Spartan";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2.4px;
+}
+
+.content-onder {
+  display: flex;
+  height: 30%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.start-button {
+  display: flex;
+  width: 30%;
+  height: 25%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--primary-color);
+  color: #fbfbfb;
+  text-align: center;
+  font-family: "League Spartan";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 3.2px;
+  border-radius: 3px;
+  border-color: white;
+  border-width: 5px;
+}
+
+.onder-container {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  justify-content: center;
+  align-self: center;
+  left: 1px;
+}
+
+.onder-style {
+  display: flex;
+  width: 900px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  background: url(../images/onderstyle.png) 50% / cover no-repeat;
+}
