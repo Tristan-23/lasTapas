@@ -318,96 +318,195 @@ body {
   position: relative; /* To position the modal relative to this container */
 }
 
-/* Modal styling */
-.modal {
-  display: none; /* Hidden by default */
-  position: absolute; /* Position relative to the .main-container */
-  right: 0; /* Align to the right side of the container */
-  top: 0;
-  width: 40%;
-  height: 100%;
-  background-color: #ffffff; /* White background for the modal */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-  z-index: 1000; /* Sit on top */
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
-  padding: 20px; /* Padding inside the modal */
-}
-
-.modal-content {
-  width: 100%; /* Full width of the modal */
-  height: 80%;
+.reciept-main-container {
   display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 56px 54px;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  z-index: 1000;
 }
 
-.close-btn {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+.reciept-top {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
 }
 
-.close-btn:hover,
-.close-btn:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+.exit-button-container {
+  display: flex;
+  width: 47px;
+  height: 48px;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-h2 {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #333;
+.reciept-tekst {
+  display: flex;
+  width: 607.072px;
+  height: 48.188px;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.receipt-content {
-  margin-bottom: 20px;
+.reciept-content-container {
+  display: flex;
+  height: 907px;
+  padding: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+  align-self: stretch;
 }
 
-.receipt-content p {
-  font-size: 18px;
-  margin: 8px 0;
-  color: #555;
+.reciept-placeholder-container {
+  display: flex;
+  height: 137px;
+  padding: 0px 25px;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+  align-self: stretch;
 }
 
-.receipt-content p.total {
-  font-weight: bold;
-  font-size: 20px;
-  color: #333;
+.reciept-placeholder-foto {
+  display: flex;
+  width: 119px;
+  height: 101px;
+  padding: 10px;
+  align-items: flex-start;
+  gap: 10px;
+  background: url(../images/Patatas-bravas.png) lightgray 50% / cover no-repeat;
 }
 
-.checkout-btn {
-  display: inline-block;
-  padding: 12px 24px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-transform: uppercase; /* Uppercase text for a professional touch */
-}
-
-.checkout-btn:hover {
-  background-color: #c38e08;
-}
-
-.modal-footer {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.modal-footer-tekst {
-  text-align: center;
-}
-
-.modal-footer p {
-  margin: 0;
+.reciept-placeholder-left-container {
+  display: flex;
+  padding: 10px 0px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  color: #947777;
+  font-family: "League Spartan";
   font-size: 16px;
-  color: #777;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.6px;
+}
+
+.reciept-placeholder-tekst-container {
+  display: flex;
+  padding: 10px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.reciept-placeholder-allergy-container {
+  display: flex;
+  height: 32px;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.reciept-placeholder-allergy {
+  display: flex;
+  width: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  background: url(../images/glutenvrij1.png) lightgray 50% / cover no-repeat;
+}
+
+.reciept-placeholder-right-container {
+  display: flex;
+  padding: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.reciept-placeholder-content-container {
+  display: flex;
+  width: 163px;
+  height: 137px;
+  padding: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.reciept-placeholder-price-container {
+  display: flex;
+  padding: 10px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  color: #726262;
+  font-family: "League Spartan";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.6px;
+}
+
+.reciept-placeholder-button-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.reciept-placeholder-button-min {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #992929;
+}
+
+.reciept-placeholder-input {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid #000;
+  background: #fff;
+}
+
+.reciept-placeholder-button-plus {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #992929;
 }
 
 .sidebar {
