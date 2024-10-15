@@ -1,578 +1,202 @@
-:root {
-  --primary-color: #dea30c;
-  --logo-rood: #a62f1e;
-  --placeholder-geel: #ffd057;
+#app header #information #basket {
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+  flex: 0;
+  margin-left: auto;
 }
-
-::-webkit-scrollbar {
-  height: 0;
-  width: 0;
+#app header #information #basket i {
+  cursor: pointer;
 }
-
-body {
-  display: flex;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100dvh;
-  overflow: hidden;
-}
-
-.main-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: var(--primary-color);
-}
-
-.nav {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: flex-start;
-  align-content: flex-start;
-  row-gap: 27px;
-  flex-shrink: 0;
-  align-self: stretch;
-  flex-wrap: wrap;
-  background: url(../images/tapas2.png) lightgray 50% / cover no-repeat;
-}
-
-.top-nav {
-  display: flex;
-  width: 99%;
-  padding-top: 10px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.links-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hamburger-button {
-  width: 64.8px;
-  height: 69.9px;
-  border: 0;
-  background: url(../images/hamburger.png) 50% / cover no-repeat;
-}
-
-.logo-container {
-  width: 99px;
-  height: 95px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--logo-rood);
-}
-
-.logo {
-  width: 90px;
-  height: 90px;
-  background: url(../images/LasTapas.svg) 50% / contain no-repeat;
-}
-
-.card-container {
-  display: flex;
-  width: 213px;
-  padding: 10px;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  background-color: var(--logo-rood);
-}
-
-.card-button {
-  width: 42px;
-  height: 39px;
-  flex-shrink: 0;
-  border: 0;
-  background: url(../images/shoppingcart.png) 50% / cover no-repeat;
-}
-
-.onder-nav {
-  display: flex;
-  width: 579px;
-  height: 131px;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.tapas-button,
-.dessert-button,
-.drinks-button {
-  display: flex;
-  height: 67px;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background: #d85745;
-  color: #726262;
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: 3.2px;
-  border: 0;
-}
-
-.active {
-  background: #a72f1e;
-  color: #fff;
-}
-
-.rechts-onder-nav {
-  display: flex;
-  width: 235px;
-  height: 131px;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.tijd-container {
-  display: flex;
-  width: 196px;
-  height: 47px;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: 3.2px;
-  background-color: var(--logo-rood);
-}
-
-.main-content-container {
-  display: flex;
-  height: 75%;
-  width: 100%;
-}
-
-.content-container {
-  display: flex;
-  height: 96%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  gap: 20px 30px;
-  padding-top: 20px;
-  flex-wrap: wrap;
-  overflow-y: scroll;
-}
-
-.placeholder-container {
-  display: flex;
-  width: 260px;
-  height: 392px;
-  flex-direction: column;
-  align-items: center;
-  background: #ffd057;
-}
-
-.placeholder-boven-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1 0 0;
-  align-self: stretch;
-}
-
-.placeholder-foto-container {
-  display: flex;
-  height: 173px;
-  background: url(../images/Patatas-bravas.png) lightgray 50% / cover no-repeat;
-}
-
-.placeholder-name-container {
-  display: flex;
-  height: 50px;
-  padding: 10px;
-  align-items: flex-start;
-  color: #000;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 2.6px;
-}
-
-.placeholder-description-container {
-  display: flex;
-  padding: 0 8px;
-  justify-content: center;
-  align-items: center;
-  color: #000;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-  flex: 1 0 0;
-  align-self: stretch;
-}
-
-.placeholder-onder-container {
-  display: flex;
-  padding-bottom: 10px;
-  justify-content: center;
-  align-items: flex-end;
-  background: #ffd057;
-}
-
-.placeholder-orderbutton {
-  display: flex;
-  width: 200px;
-  height: 38px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  background: #a72f1e;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 2.2px;
-}
-
-.onder-style-container {
-  display: flex;
-  width: 100%;
-  height: 10%;
-  justify-content: center;
-}
-
-.onder-style {
-  display: flex;
-  width: 900px;
-  height: 50px;
-  margin-top: 45px;
-  justify-content: center;
-  align-items: center;
-  background: url(../images/onderstyle.png) 50% / cover no-repeat;
-}
-
-/* Modal styling */
-.modal {
+#app header #information #basket #recipt {
   display: none;
   position: absolute;
+  top: 150%;
   right: 0;
-  top: 0;
-  width: 70%;
-  height: 100%;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  overflow-y: auto;
-  padding: 20px;
+  transform: translate(-65%, 0);
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 200px;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
-
-.modal-content {
+#app header #information #basket #recipt h4 {
+  height: 50px;
+}
+#app header #information #basket #recipt .items {
+  height: 80%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#app header #information #basket #recipt .items item {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+#app header #information #basket #recipt .items item:hover {
+  text-decoration: line-through;
+}
+#app header #information #basket #recipt .items item p {
+  padding: 5px 0;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: blue;
+}
+#app header #information #basket #recipt .items item p span {
+  font-weight: bold;
+  margin-left: 100%;
+  cursor: pointer;
+}
+#app header #information #basket #recipt .buttons {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-end;
+}
+#app header #information #basket #recipt .buttons button {
+  width: 80%;
+  height: 50%;
+  border-radius: 5px;
+  background-color: #27ae60;
+  cursor: pointer;
+}
+#app section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#app section .content {
+  width: 70%;
+  margin: 0 auto;
   height: 80%;
   display: flex;
-  flex-direction: column;
-}
-
-.close-btn {
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: #000;
-}
-
-h2 {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.receipt-content p {
-  font-size: 18px;
-  margin: 8px 0;
-  color: #555;
-}
-
-.receipt-content p.total {
-  font-weight: bold;
-  font-size: 20px;
-  color: #333;
-}
-
-.checkout-btn {
-  padding: 12px 24px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-  background-color: var(--primary-color);
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.checkout-btn:hover {
-  background-color: #c38e08;
-}
-
-/* Sidebar styling */
-.sidebar {
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 300px;
-  height: 100%;
-  background-color: #ffffff;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-  z-index: 1001;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2.5%;
+  align-items: stretch;
   overflow-y: auto;
-  padding: 20px;
-  transition: transform 0.3s ease;
-  transform: translateX(-100%);
 }
-
-.sidebar.open {
-  display: block;
-  transform: translateX(0);
+#app section .content::-webkit-scrollbar {
+  width: 12px;
+  border: 3px solid black;
+  border-radius: 10px;
 }
-
-.request-btn,
-.server-btn {
-  padding: 12px 24px;
-  margin-bottom: 15px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-  background-color: var(--primary-color);
-  border-radius: 5px;
-  cursor: pointer;
+#app section .content::-webkit-scrollbar-thumb {
+  background: #27ae60;
+  border-radius: 10px;
 }
-
-.request-btn:hover {
-  background-color: #c38e08;
+#app section .content::-webkit-scrollbar-thumb:hover {
+  background: #2ecc71;
 }
-
-/* Nieuwe bon CSS */
-.reciept-modal {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  padding: 56px 54px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  z-index: 1000;
-}
-
-.reciept-top {
-  display: flex;
-  width: 100%;
-  padding: 10px;
-  align-items: flex-start;
-  gap: 10px;
-  align-self: stretch;
-}
-
-.close-btn-container {
-  display: flex;
-  width: 47px;
-  height: 48px;
-  padding: 10px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.reciept-tekst {
-  display: flex;
-  width: 607.072px;
-  height: 48.188px;
-  padding: 10px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-content {
-  display: flex;
-  height: 65%;
-  padding: 10px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  flex-shrink: 0;
-  align-self: stretch;
-}
-
-.reciept-placeholder-container {
-  display: flex;
-  height: 137px;
-  padding: 0px 25px;
-  align-items: flex-start;
-  gap: 10px;
-  flex-shrink: 0;
-  align-self: stretch;
-}
-
-.reciept-placeholder-foto {
-  display: flex;
-  width: 119px;
-  height: 101px;
-  padding: 10px;
-  align-items: flex-start;
-  gap: 10px;
-  background: url(../images/Patatas-bravas.png) lightgray 50% / cover no-repeat;
-}
-
-.reciept-placeholder-left-container {
-  display: flex;
-  padding: 10px 0px;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-  color: #947777;
-  font-family: "League Spartan";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 1.6px;
-}
-
-.reciept-placeholder-tekst-container {
-  display: flex;
-  padding: 10px;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.reciept-placeholder-allergy-container {
-  display: flex;
-  height: 32px;
-  align-items: flex-start;
-  gap: 10px;
-  align-self: stretch;
-}
-
-.reciept-placeholder-allergy {
-  display: flex;
-  width: 40px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  align-self: stretch;
-  background: url(../images/glutenvrij1.png) lightgray / cover no-repeat;
-}
-
-.reciept-placeholder-right-container {
-  display: flex;
-  padding: 10px;
-  justify-content: flex-end;
-  align-items: center;
-  flex: 1 0 0;
-  align-self: stretch;
-}
-
-.reciept-placeholder-content-container {
-  display: flex;
-  width: 163px;
-  height: 137px;
-  padding: 10px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.reciept-placeholder-price-container {
-  display: flex;
-  padding: 10px;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 10px;
-  flex: 1 0 0;
-  align-self: stretch;
-  color: #726262;
-  font-family: "League Spartan";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 1.6px;
-}
-
-.reciept-placeholder-button-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  flex: 1 0 0;
-  align-self: stretch;
-}
-
-.reciept-placeholder-button-min {
-  display: flex;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex: 1 0 0;
-  align-self: stretch;
-  border-radius: 8px;
-  background: #992929;
-}
-
-.reciept-placeholder-input {
-  display: flex;
-  padding: 10px;
-  width: 10%;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex: 1 0 0;
-  align-self: stretch;
-  border-radius: 8px;
-  border: 1px solid #000;
-  background: #fff;
-}
-
-.reciept-placeholder-button-plus {
-  display: flex;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex: 1 0 0;
-  align-self: stretch;
-  border-radius: 8px;
-  background: #992929;
-}
-
-.modal-footer {
-  display: flex;
-  width: 100%;
-  height: 10%;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-footer-tekst {
-  display: flex;
-  width: 100%;
-  height: 10%;
-  justify-content: center;
-  align-items: center;
+#app section .content .menu-item {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   text-align: center;
-}
-
-.checkout-btn-order {
+  transition: transform 0.2s;
   display: flex;
-  padding: 15px 106px;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40%;
+  max-height: 200px;
+}
+#app section .content .menu-item:hover {
+  transform: scale(0.95);
+}
+#app section .content .menu-item .image {
+  width: 100%;
+  height: 125px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+#app section .content .menu-item .image img {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#app section .content .menu-item h3 {
+  height: auto;
+  font-size: 1.25em;
+  display: flex;
   align-items: center;
-  gap: 10px;
-  border-radius: 20px;
-  background: #a72f1e;
+  justify-content: center;
+  color: #333;
+}
+#app section .content .menu-item p {
+  font-size: 1em;
+  color: #666;
+  width: 90%;
+  margin: 0 5%;
+}
+#app section .content .menu-item .btn_container {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#app section .content .menu-item .btn_container button {
+  background-color: #27ae60;
+  color: white;
+  padding: 1% 2%;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 60%;
+}
+#app section .content .menu-item .btn_container button:hover {
+  background-color: #2ecc71;
+}
+#app section .content .menu-item .btn_container button:active {
+  transform: scale(0.95);
+}
+@media (min-width: 600px) {
+  #app section .content .menu-item {
+    flex-basis: 45%;
+  }
+}
+@media (min-width: 900px) {
+  #app section .content .menu-item {
+    flex-basis: 30%;
+  }
+}
+@media (min-width: 1200px) {
+  #app section .content .menu-item {
+    flex-basis: 22%;
+  }
+}
+#app section #names {
+  height: 10%;
+  max-width: 70%;
+  display: flex;
+  align-items: center;
+  gap: 2.5%;
+}
+#app section #names button {
+  background-color: #27ae60;
+  color: white;
+  padding: 1% 2%;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  height: 80%;
+  flex: 1;
+  max-width: 25%;
+}
+#app section #names button:hover {
+  background-color: #2ecc71;
+}
+#app section #names button:active {
+  transform: scale(0.95);
 }

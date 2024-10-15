@@ -8,14 +8,14 @@ const standardUrl = fullUrl.split("/").slice(0, 3).join("/");
 // const data = { row: "value" };
 // const change = { row: "value" };
 
-// // Example;
+// Example;
 // const server = "fetch";
 // const method = server === "update" ? "PATCH" : "POST";
-// const table = "users";
+// const table = "workers";
 // const data = {};
 // const change = {};
 
-// makeServerRequest(server, method, table, data, change).then((data) => {
+// makeServerRequest(server, table, data, change).then((data) => {
 //   if (data.type === "ERROR") {
 //     console.error("Error fetching data:", data.msg);
 //     return;

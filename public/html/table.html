@@ -3,53 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/global/layout.css" />
     <link rel="stylesheet" href="css/table.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <title>Tafel</title>
+    <title>table</title>
     <link rel="icon" href="../images/icon.png" type="image/png" />
   </head>
   <body>
-    <div class="main-container">
-      <div class="nav">
-        <div class="top-nav">
-          <div class="nav-links">
-            <button class="hamburger-button"></button>
-            <div class="logo-container">
-              <div class="logo"></div>
-            </div>
-          </div>
-          <div class="card-container">
-            <button class="card-button"></button>
-          </div>
+    <div id="app">
+      <header>
+        <nav>
+          <li onclick="userNav('welcome')" class="active">Welcome</li>
+          <li onclick="userNav('menu')">Menu</li>
+          <li onclick="userNav('goodbye')">Goodbye</li>
+        </nav>
+        <div class="information">
+          <li></li>
         </div>
-      </div>
-      <div class="main-content-container">
-        <div class="content-container">
-          <div class="content-boven">
-            <div class="content-logo-container">
-              <div class="content-logo"></div>
-            </div>
-          </div>
-          <div class="content-midden">
-            <div class="content-tekst">
-              We heten u van harte welkom in ons restaurant en kijken ernaar uit
-              om u te verwennen met smaakvolle gerechten en een onvergetelijke
-              eetervaring. Onze passie voor heerlijk eten, gastvrijheid en een
-              gezellige sfeer staat centraal bij alles wat we doen.
-            </div>
-          </div>
-          <div class="content-onder">
-            <button onclick="startSession()" class="start-button">Start hier</button>
-          </div>
+        <div id="logo"></div>
+      </header>
+      <section>
+        <div class="container"></div>
+        <button id="start" onclick="registerTable(this)">Register Table</button>
+        <div id="tooltip" class="circle"></div>
+        <div id="circle" class="circle">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div>7</div>
+          <div>8</div>
+          <div>9</div>
+          <div>10</div>
+          <div>11</div>
+          <div>12</div>
+          <div>13</div>
+          <div>14</div>
+          <div>15</div>
+          <div>16</div>
+          <button id="startButton" onclick="validateData();">Start</button>
         </div>
-      </div>
-      <div class="onder-container">
-      <div class="onder-style"></div>
-      </div>
+      </section>
+      <footer>
+        Door gebruik te maken van dit systeem, gaat u akkoord met ons
+        privacybeleid volgens de
+        <a href="https://www.google.com/">AVG</a>
+        <br />
+        <p>Gemaakt door Sem & Tristán</p>
+      </footer>
+    </div>
     <script src="js/global/cl_request.js"></script>
+    <script src="js/global/cl_numpad.js"></script>
     <script src="js/cl_table.js"></script>
   </body>
 </html>

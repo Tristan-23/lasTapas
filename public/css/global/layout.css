@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  list-style: none;
+  font-family: "Maax-Regular";
+  text-decoration: none;
+  color: black;
+  cursor: auto;
+}
+
+@font-face {
+  font-family: "Maax-Regular";
+  src: url(../fonts/maax-regular.woff2);
+}
+@font-face {
+  font-family: "Maax-Medium";
+  src: url(../fonts/maax-medium.woff2);
+}
+@font-face {
+  font-family: "Maax-Bold";
+  src: url(../fonts/maax-bold.woff2);
+}
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: #222222;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #222222;
+}
+#app * {
+  width: 100%;
+}
+#app header {
+  height: 12.5%;
+  background-color: greenyellow;
+  background-image: url(../../images/header.png);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+#app header * {
+  width: 40%;
+  margin-bottom: 0.5%;
+}
+#app header #logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 80px;
+  width: 5%;
+  aspect-ratio: 1;
+  margin: 0;
+  border: 5px solid black;
+  border-radius: 100%;
+  background-color: #a62f1e;
+  background-image: url(../../images/LasTapas.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 70%;
+}
+#app header nav,
+#app header #information {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+#app header nav li,
+#app header #information li {
+  flex: 1;
+  height: 40%;
+  min-width: 75px;
+  max-width: 30%;
+  position: relative;
+  margin: 0 1%;
+  border-radius: 10px;
+  font-size: 125%;
+  color: #bfbfbf;
+  background-color: #50170e;
+  border: 3px solid black;
+  text-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#app header nav li i,
+#app header #information li i {
+  width: auto;
+  margin: 0 2.5%;
+  color: white;
+}
+#app header nav li ul,
+#app header #information li ul {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  min-width: 160px;
+  z-index: 1;
+  background-color: #50170e;
+  border: 1px solid black;
+}
+#app header nav li ul li,
+#app header #information li ul li {
+  padding: 10px;
+  color: #bfbfbf;
+}
+#app header nav li ul li:hover,
+#app header #information li ul li:hover {
+  background-color: #d13b26;
+}
+#app header nav li.active,
+#app header #information li.active {
+  color: white;
+  background-color: #a62f1e;
+}
+#app header .information {
+  height: 100%;
+}
+#app section {
+  flex: 1;
+  background-color: #dea30c;
+}
+#app footer {
+  height: 10%;
+  text-align: center;
+  background-color: #dea30c;
+  background-image: url(../../images/footer.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 50%;
+}
+#app footer p {
+  color: transparent;
+}

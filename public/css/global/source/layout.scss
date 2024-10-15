@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+
+  list-style: none;
+  font-family: "Maax-Regular";
+  text-decoration: none;
+  color: black;
+  cursor: auto;
+}
+
+$primary-color: #dea30c;
+$logo-rood: #a62f1e;
+$placeholder-geel: #ffd057;
+
+$background-light: #e5ebef;
+$background-med: #bfbfbf;
+$background-dark: #222222;
+
+$positive-color: #00b588;
+$negative-color: #b50000;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin img-center {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+@font-face {
+  font-family: "Maax-Regular";
+  src: url(../fonts/maax-regular.woff2);
+}
+
+@font-face {
+  font-family: "Maax-Medium";
+  src: url(../fonts/maax-medium.woff2);
+}
+
+@font-face {
+  font-family: "Maax-Bold";
+  src: url(../fonts/maax-bold.woff2);
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: $background-dark;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: $background-dark;
+
+  * {
+    width: 100%;
+  }
+
+  header {
+    height: 12.5%;
+    background-color: greenyellow;
+    background-image: url(../../images/header.png);
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    * {
+      width: 40%;
+      margin-bottom: 0.5%;
+    }
+
+    #logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      min-width: 80px;
+      width: 5%;
+      aspect-ratio: 1;
+      margin: 0;
+
+      border: 5px solid black;
+      border-radius: 100%;
+      background-color: $logo-rood;
+      background-image: url(../../images/LasTapas.svg);
+      @include img-center();
+      background-size: 70%;
+    }
+
+    nav,
+    #information {
+      height: 100%;
+
+      display: flex;
+      align-items: flex-end;
+
+      li {
+        flex: 1;
+        height: 40%;
+        min-width: 75px;
+        max-width: 30%;
+
+        position: relative;
+        margin: 0 1%;
+        border-radius: 10px;
+        font-size: 125%;
+
+        color: $background-med;
+        background-color: darken($logo-rood, 20%);
+        border: 3px solid black;
+
+        text-wrap: nowrap;
+        @include flex-center();
+
+        i {
+          width: auto;
+          margin: 0 2.5%;
+          color: white;
+        }
+
+        ul {
+          display: none;
+          position: absolute;
+          top: calc(100% + 5px);
+          left: 0;
+          min-width: 160px;
+          z-index: 1;
+          background-color: darken($logo-rood, 20%);
+          border: 1px solid black;
+
+          li {
+            padding: 10px;
+            color: $background-med;
+
+            &:hover {
+              background-color: lighten($logo-rood, 10%);
+            }
+          }
+        }
+
+        &.active {
+          color: white;
+          background-color: $logo-rood;
+        }
+      }
+    }
+
+    .information {
+      height: 100%;
+    }
+  }
+
+  section {
+    flex: 1;
+    background-color: $primary-color;
+  }
+
+  footer {
+    height: 10%;
+
+    text-align: center;
+    background-color: $primary-color;
+    background-image: url(../../images/footer.png);
+    @include img-center();
+    background-size: 50%;
+
+    p {
+      color: transparent;
+    }
+  }
+}

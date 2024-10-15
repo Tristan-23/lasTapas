@@ -1,257 +1,354 @@
-const modal = document.getElementById("receipt-modal");
-const cardButton = document.querySelector(".card-button");
-const closeBtn = document.querySelector(".close-btn");
+const baseUrl = window.location.href.split("/").slice(0, 3).join("/");
+const advancedUrl = baseUrl + "/menu";
 
-cardButton.addEventListener("click", () => {
-  modal.style.display = "block";
-});
-
-closeBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-window.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const sidebar = document.getElementById("sidebar");
-  const hamburgerButton = document.querySelector(".hamburger-button");
-  const closeSidebarButton = document.querySelector(".close-sidebar");
-
-  function openSidebar() {
-    sidebar.classList.add("open");
-  }
-
-  function closeSidebar() {
-    sidebar.classList.remove("open");
-  }
-
-  hamburgerButton.addEventListener("click", openSidebar);
-  closeSidebarButton.addEventListener("click", closeSidebar);
-
-  document.addEventListener("click", function (event) {
-    if (
-      sidebar.classList.contains("open") &&
-      !sidebar.contains(event.target) &&
-      !hamburgerButton.contains(event.target)
-    ) {
-      closeSidebar();
-    }
-  });
-});
-
-document.getElementById("call-ober-btn").addEventListener("click", function () {
-  alert("A server is on their way!");
-});
-
-document
-  .getElementById("call-salt-pepper-btn")
-  .addEventListener("click", function () {
-    alert("Salt or pepper is being brought to your table.");
-  });
-
-document
-  .getElementById("call-napkins-btn")
-  .addEventListener("click", function () {
-    alert("Napkins are on their way!");
-  });
-
+// Check if the table information is stored in local storage
 window.onload = function () {
-  let tijdContainer = document.querySelector(".tijd-container");
-  let timeString = tijdContainer.innerText;
-
-  let timeParts = timeString.split(":");
-  let hours = parseInt(timeParts[0], 10);
-  let minutes = parseInt(timeParts[1], 10);
-  let seconds = parseInt(timeParts[2], 10);
-
-  function startTimer() {
-    let totalSeconds = hours * 3600 + minutes * 60 + seconds;
-
-    let timerInterval = setInterval(function () {
-      totalSeconds--;
-
-      if (totalSeconds < 0) {
-        clearInterval(timerInterval);
-        window.location.href = baseUrl + "/";
-        return;
-      }
-
-      let newHours = Math.floor(totalSeconds / 3600);
-      let newMinutes = Math.floor((totalSeconds % 3600) / 60);
-      let newSeconds = totalSeconds % 60;
-
-      tijdContainer.innerText =
-        (newHours < 10 ? "0" : "") +
-        newHours +
-        ":" +
-        (newMinutes < 10 ? "0" : "") +
-        newMinutes +
-        ":" +
-        (newSeconds < 10 ? "0" : "") +
-        newSeconds;
-    }, 1000);
+  if (!localStorage.getItem("table")) {
+    window.location.href = baseUrl + "/table";
   }
 
-  startTimer();
+  const clockElement = document.querySelector("#clock");
+  const initialTime = clockElement.textContent.trim(); // Get the time from the HTML
+  const totalTimeInSeconds = parseTimeString(initialTime); // Convert "HH:MM:SS" to seconds
+
+  const remainingTime = localStorage.getItem("remainingTime");
+
+  if (remainingTime) {
+    startCountdown(parseInt(remainingTime, 10), clockElement);
+  } else {
+    startCountdown(totalTimeInSeconds, clockElement);
+  }
 };
 
-let receipt = {};
-function addToRecipt(item) {
-  const itemKey = item.menu_item;
+const dietaryPreferences = {
+  vegan: "fas fa-leaf",
+  vegetarian: "fas fa-leaf",
+  glutenFree: "fas fa-gluten-free",
+  nutFree: "fas fa-peanut",
+  dairyFree: "fas fa-milk-alt",
+  soyFree: "fas fa-soybean",
+  eggFree: "fas fa-egg",
+  lowCarb: "fas fa-bread-slice",
+  paleo: "fas fa-carrot",
+  keto: "fas fa-cheese",
+};
 
-  if (item.menu_category === "Tapas" || item.menu_category === "Drinks") {
-    const totalCount = Object.values(receipt)
-      .filter(
-        (i) => i.menu_category === "Tapas" || i.menu_category === "Drinks"
-      )
-      .reduce((count, i) => count + i.quantity, 0);
+const menuItems = [
+  {
+    image: "pizza.jpg",
+    label: "Margherita Pizza",
+    description: "Classic pizza with tomatoes, mozzarella, and basil.",
+    category: "Main",
+    price: 12.99,
+    allergies: [dietaryPreferences.glutenFree],
+  },
+  {
+    image: "burger.jpg",
+    label: "Cheeseburger",
+    description: "Juicy beef patty with cheddar cheese and pickles.",
+    category: "Main",
+    price: 9.99,
+    allergies: [dietaryPreferences.dairyFree, dietaryPreferences.glutenFree],
+  },
+  {
+    image: "salad.jpg",
+    label: "Caesar Salad",
+    description: "Crisp romaine lettuce with Caesar dressing and croutons.",
+    category: "Salads",
+    price: 7.99,
+    allergies: [dietaryPreferences.glutenFree, dietaryPreferences.dairyFree],
+  },
+  {
+    image: "soda.jpg",
+    label: "Cola",
+    description: "Classic fizzy cola drink.",
+    category: "Drinks",
+    price: 1.99,
+    allergies: [],
+  },
+  {
+    image: "taco.jpg",
+    label: "Fish Taco",
+    description: "Tacos filled with grilled fish and fresh salsa.",
+    category: "Main",
+    price: 11.99,
+    allergies: [dietaryPreferences.glutenFree, dietaryPreferences.dairyFree],
+  },
+];
 
-    if (totalCount >= 3) {
-      alert(
-        "You can only order a maximum of 3 items from Tapas and Drinks combined."
-      );
-      return;
-    }
-  }
+let basket = []; // Initialize a global basket array
+let mainItemCount = 0; // Counter for main items in the basket
 
-  if (receipt[itemKey]) {
-    receipt[itemKey].quantity += 1;
+document.addEventListener("DOMContentLoaded", () => {
+  createMenuGrid(); // Populate the grid with all items initially
+  filterMenu("All"); // Show all items initially
+});
+
+function showRecipt(self) {
+  const receiptElement = document.querySelector("#recipt");
+  if (receiptElement.style.display === "block") {
+    receiptElement.style.display = "none";
   } else {
-    receipt[itemKey] = { ...item, quantity: 1 };
+    receiptElement.style.display = "block";
   }
-
-  updateReceiptDisplay();
 }
 
-function removeFromRecipt(key) {
-  if (receipt[key]) {
-    if (receipt[key].quantity > 1) {
-      receipt[key].quantity -= 1;
-    } else {
-      delete receipt[key];
+// Function to create the initial menu grid
+function createMenuGrid() {
+  const contentDiv = document.querySelector(".content");
+  menuItems.forEach((item) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("menu-item");
+    itemDiv.classList.add(item.category.toLowerCase());
+
+    // Create HTML structure with FontAwesome icons for allergies
+    itemDiv.innerHTML = `
+      <div class="image">
+        <img src="../images/items/${item.image}" alt="${item.label}" />
+      </div>
+      <h3>${item.label}</h3>
+      <p>${item.description}</p>
+      <div class="allergies">
+        ${item.allergies
+          .map((iconClass) => `<i class="${iconClass}"></i>`)
+          .join(" ")}
+      </div>
+      <div class="btn_container">
+        <button onclick="order('${item.label}', ${item.price}, '${
+      item.category
+    }')">Order €${item.price}</button>
+      </div>
+    `;
+
+    contentDiv.appendChild(itemDiv);
+  });
+}
+
+// Function to render the receipt from the basket
+// Function to render the receipt from the basket
+function updateReceipt() {
+  const receiptElement = document.querySelector("#recipt");
+  receiptElement.innerHTML = ""; // Clear existing items
+
+  if (basket.length === 0) {
+    receiptElement.innerHTML = "<h4>Your basket is empty.</h4>";
+    return;
+  } else {
+    receiptElement.innerHTML = `<h4>Tapas Basket ${mainItemCount}/5</h4>`;
+  }
+
+  let total = 0;
+  basket.forEach((item, index) => {
+    total += item.price * item.quantity; // Update total calculation
+
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("receipt-item");
+    itemDiv.onclick = () => removeFromBasket(index);
+
+    itemDiv.innerHTML = `
+      <p>${item.quantity}x ${item.label} <span>€${(
+      item.price * item.quantity
+    ).toFixed(2)}</span></p>
+    `;
+
+    receiptElement.appendChild(itemDiv);
+  });
+
+  // Add total amount to the receipt
+  const totalDiv = document.createElement("div");
+  totalDiv.classList.add("receipt-total");
+  totalDiv.innerHTML = `<p><strong>Total:</strong> €${total.toFixed(2)}</p>`;
+  receiptElement.appendChild(totalDiv);
+
+  // Create and add "Place Order" button
+  const placeOrderButton = document.createElement("button");
+  placeOrderButton.textContent = "Place Order";
+  placeOrderButton.classList.add("place-order-btn");
+  placeOrderButton.onclick = placeOrder; // Call placeOrder function on click
+  receiptElement.appendChild(placeOrderButton);
+}
+
+// Function to handle placing the order
+function placeOrder() {
+  if (basket.length === 0) {
+    alert("Your basket is empty. Add items to order.");
+    return;
+  }
+
+  // Here you can implement the functionality to process the order
+  // For demonstration, we'll just log the basket to the console
+  console.log("Order placed:", basket);
+
+  // here should a server req be made to store the order
+
+  basket = [];
+  mainItemCount = 0;
+  updateReceipt();
+}
+
+// Function to order food
+function order(label, price, category) {
+  const existingItem = basket.find((item) => item.label === label);
+
+  if (existingItem) {
+    // If the item is already in the basket, increase its quantity
+    existingItem.quantity++;
+  } else {
+    // Check if the item is a main course and if the limit has been reached
+    if (category === "Main" && mainItemCount >= 5) {
+      alert("You can only order a maximum of 5 main courses.");
+      return; // Exit the function to prevent adding more
     }
-    updateReceiptDisplay();
+
+    // If it's a new item, add it to the basket with quantity 1
+    basket.push({ label, price, category, quantity: 1 });
+
+    // Increment main item count if the category is 'Main'
+    if (category === "Main") {
+      mainItemCount++;
+    }
   }
+
+  alert(`${label} has been added to your basket!`);
+  updateReceipt(); // Update the receipt whenever an item is added
 }
 
-function updateReceiptDisplay() {
-  const receiptContainer = document.querySelector(".receipt-content");
-  receiptContainer.innerHTML = "";
+// Function to remove an item from the basket by index
+function removeFromBasket(index) {
+  const removedItem = basket[index];
+  removedItem.quantity--; // Decrease the quantity
 
-  for (const key in receipt) {
-    const item = receipt[key];
-
-    const receiptItemDiv = document.createElement("div");
-    receiptItemDiv.classList.add("receipt-item");
-
-    const receiptItemText = document.createElement("p");
-    receiptItemText.innerText = `${item.quantity}x ${item.menu_item}`;
-
-    const removeButton = document.createElement("button");
-    removeButton.innerText = "Remove";
-    removeButton.onclick = () => removeFromRecipt(key);
-
-    receiptItemDiv.appendChild(receiptItemText);
-    receiptItemDiv.appendChild(removeButton);
-
-    receiptContainer.appendChild(receiptItemDiv);
+  if (removedItem.quantity <= 0) {
+    // If quantity is zero, check if it's a main item to decrement the counter
+    if (removedItem.category === "Main") {
+      mainItemCount--;
+    }
+    basket.splice(index, 1); // Remove the item if quantity is zero
   }
+  updateReceipt(); // Update the receipt after removal
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const tapasButton = document.querySelector(".tapas-button");
-  const dessertButton = document.querySelector(".dessert-button");
-  const drinksButton = document.querySelector(".drinks-button");
-  const contentContainer = document.querySelector(".content-container");
+// Function to handle dropdown menu
+function dropDown(element) {
+  const allDropdowns = document.querySelectorAll(".dropdown-content");
 
-  const buttons = [tapasButton, dessertButton, drinksButton]; // Grouping all buttons
-
-  const server = "fetch";
-  const method = server === "update" ? "PATCH" : "POST";
-  const table = "menu_details";
-  const data = {};
-  const change = {};
-
-  let tapasContent = "";
-  let dessertContent = "";
-  let drinksContent = "";
-  makeServerRequest(server, method, table, data, change).then((data) => {
-    if (data.type === "ERROR") {
-      console.error("Error fetching data:", data.msg);
-      return;
-    } else {
-      data.forEach((item, index) => {
-        if (item.menu_category === "Tapas") {
-          tapasContent += `
-            <div class="placeholder-container">
-              <div class="placeholder-boven-container">
-                <div class="placeholder-foto-container"></div>
-                <div class="placeholder-name-container">${item.menu_item}</div>
-                <div class="placeholder-description-container">${item.menu_description}</div>
-              </div>
-              <div class="placeholder-onder-container">
-                <button onclick="addToRecipt({menu_category : '${item.menu_category}',  menu_item: '${item.menu_item}', menu_price: '${item.menu_price}' })" class="placeholder-orderbutton">Bestel hier</button>
-              </div>
-            </div>
-            <!-- Add more Tapas items if necessary -->
-          `;
-        }
-        if (item.menu_category === "Dessert") {
-          dessertContent += `
-            <div class="placeholder-container">
-              <div class="placeholder-boven-container">
-                <div class="placeholder-foto-container"></div>
-                <div class="placeholder-name-container">${item.menu_item}</div>
-                <div class="placeholder-description-container">${item.menu_description}</div>
-              </div>
-              <div class="placeholder-onder-container">
-                <button onclick="addToRecipt({menu_category : '${item.menu_category}',  menu_item: '${item.menu_item}', menu_price: '${item.menu_price}' })" class="placeholder-orderbutton">Bestel hier</button>
-              </div>
-            </div>
-            <!-- Add more Tapas items if necessary -->
-          `;
-        }
-        if (item.menu_category === "Drinks") {
-          drinksContent += `
-            <div class="placeholder-container">
-              <div class="placeholder-boven-container">
-                <div class="placeholder-foto-container"></div>
-                <div class="placeholder-name-container">${item.menu_item}</div>
-                <div class="placeholder-description-container">${item.menu_description}</div>
-              </div>
-              <div class="placeholder-onder-container">
-                 <button onclick="addToRecipt({menu_category : '${item.menu_category}',  menu_item: '${item.menu_item}', menu_price: '${item.menu_price}' })" class="placeholder-orderbutton">€${item.menu_price}</button>
-              </div>
-            </div>
-            <!-- Add more Tapas items if necessary -->
-          `;
-        }
-      });
-      switchContent(tapasContent, tapasButton);
+  // Close all dropdowns except the one clicked
+  allDropdowns.forEach((dropdown) => {
+    if (dropdown !== element.querySelector(".dropdown-content")) {
+      dropdown.style.display = "none";
     }
   });
 
-  function switchContent(content, activeButton) {
-    contentContainer.innerHTML = content;
-    buttons.forEach((button) => button.classList.remove("active"));
-    activeButton.classList.add("active");
+  const dropdownContent = element.querySelector(".dropdown-content");
+  if (dropdownContent) {
+    dropdownContent.style.display =
+      dropdownContent.style.display === "block" ? "none" : "block";
   }
+}
 
-  switchContent(tapasContent, tapasButton);
+// Filter menu items based on the selected category
+function filterMenu(category) {
+  const contentDiv = document.querySelector(".content");
+  contentDiv.innerHTML = ""; // Clear existing items
 
-  tapasButton.addEventListener("click", () =>
-    switchContent(tapasContent, tapasButton)
+  const filteredItems =
+    category === "All"
+      ? menuItems
+      : menuItems.filter((item) => item.category === category);
+
+  filteredItems.forEach((item) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("menu-item");
+    itemDiv.classList.add(item.category.toLowerCase());
+
+    // Create HTML structure with FontAwesome icons for allergies
+    itemDiv.innerHTML = `
+      <div class="image">
+        <img src="../images/items/${item.image}" alt="${item.label}" />
+      </div>
+      <h3>${item.label}</h3>
+      <p>${item.description}</p>
+      <div class="allergies">
+        ${item.allergies
+          .map((iconClass) => `<i class="${iconClass}"></i>`)
+          .join(" ")}
+      </div>
+      <div class="btn_container">
+        <button onclick="order('${item.label}', ${item.price}, '${
+      item.category
+    }')">Order €${item.price}</button>
+      </div>
+    `;
+
+    contentDiv.appendChild(itemDiv);
+  });
+}
+
+// Function to filter menu by dietary preferences
+function filterMenuByDietaryPreferences(allergies) {
+  const contentDiv = document.querySelector(".content");
+  contentDiv.innerHTML = ""; // Clear existing items
+
+  const filteredItems = menuItems.filter(
+    (item) => !item.allergies.some((allergy) => allergies.includes(allergy))
   );
 
-  dessertButton.addEventListener("click", () =>
-    switchContent(dessertContent, dessertButton)
-  );
+  filteredItems.forEach((item) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("menu-item");
+    itemDiv.classList.add(item.category.toLowerCase());
 
-  drinksButton.addEventListener("click", () =>
-    switchContent(drinksContent, drinksButton)
-  );
-});
+    // Create HTML structure with FontAwesome icons for allergies
+    itemDiv.innerHTML = `
+      <div class="image">
+        <img src="../images/items/${item.image}" alt="${item.label}" />
+      </div>
+      <h3>${item.label}</h3>
+      <p>${item.description}</p>
+      <div class="allergies">
+        ${item.allergies
+          .map((iconClass) => `<i class="${iconClass}"></i>`)
+          .join(" ")}
+      </div>
+      <div class="btn_container">
+        <button onclick="order('${item.label}', ${item.price}, '${
+      item.category
+    }')">Order €${item.price}</button>
+      </div>
+    `;
+
+    contentDiv.appendChild(itemDiv);
+  });
+}
+
+// Function to parse the time string in the format "HH:MM:SS"
+function parseTimeString(timeString) {
+  const [hours, minutes, seconds] = timeString.split(":").map(Number);
+  return hours * 3600 + minutes * 60 + seconds;
+}
+
+// Function to start the countdown timer
+function startCountdown(seconds, clockElement) {
+  const countdownInterval = setInterval(() => {
+    seconds--;
+
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    clockElement.textContent = `${pad(hours)}:${pad(minutes)}:${pad(secs)}`;
+
+    localStorage.setItem("remainingTime", seconds); // Store remaining time in local storage
+
+    if (seconds <= 0) {
+      clearInterval(countdownInterval);
+      // Redirect to the payment page after the countdown ends
+      window.location.href = advancedUrl + "/pay";
+    }
+  }, 1000);
+}
+
+// Function to pad numbers to two digits
+function pad(number) {
+  return String(number).padStart(2, "0");
+}

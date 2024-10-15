@@ -63,12 +63,16 @@ body {
   transition: background-color 0.3s, color 0.3s;
   display: block;
 }
-.dashboard .sidebar-nav ul li:focus, .dashboard .sidebar-nav ul li:hover, .dashboard .sidebar-nav ul li.active {
+.dashboard .sidebar-nav ul li a:focus, .dashboard .sidebar-nav ul li a:hover {
+  background-color: #00192b;
+  color: #fff;
+}
+.dashboard .sidebar-nav ul li.active {
   background-color: #00192b;
   color: #fff;
 }
 .dashboard .sidebar-nav ul li ul {
-  display: none; /* Initially hide submenu */
+  display: none;
   padding-left: 1rem;
 }
 .dashboard .sidebar-nav ul li ul.active {
@@ -77,9 +81,6 @@ body {
 .dashboard .sidebar-nav ul li ul li {
   padding: 8px 16px;
   cursor: pointer;
-}
-.dashboard .sidebar-nav ul li ul li:hover {
-  background-color: #f0f0f0;
 }
 .dashboard .main-content {
   flex: 1;
@@ -184,13 +185,13 @@ body {
 .dashboard .main-content .cards .data-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-.dashboard .main-content .cards .data-table th,
-.dashboard .main-content .cards .data-table td {
+.dashboard .main-content .cards .data-table tr th,
+.dashboard .main-content .cards .data-table tr td {
   border: 1px solid #ddd;
   padding: 0.75rem;
   text-align: left;
 }
-.dashboard .main-content .cards .data-table th {
+.dashboard .main-content .cards .data-table tr th {
   background-color: #00365e;
   color: white;
   font-family: "Maax-Bold";
@@ -254,16 +255,6 @@ body {
 .dashboard .main-content .cards .card .card-action:hover {
   background-color: #00192b;
 }
-@media (max-width: 1024px) {
-  .dashboard .main-content .cards {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-}
-@media (max-width: 768px) {
-  .dashboard .main-content .cards {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-}
 .dashboard .main-content .charts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -293,6 +284,11 @@ body {
   font-size: 1rem;
 }
 
+@media (max-width: 1024px) {
+  .dashboard .main-content .cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
 @media (max-width: 768px) {
   .dashboard {
     flex-direction: column;
@@ -316,4 +312,66 @@ body {
     width: 100%;
     justify-content: space-between;
   }
+  .dashboard .main-content .cards {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+#pop-up {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  z-index: 1000; /* Ensure the popup appears above other elements */
+}
+#pop-up .container {
+  width: 40%;
+  height: auto; /* Allow the height to be dynamic based on content */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #f4f7f6, #ffffff); /* Match card background */
+  padding: 2rem; /* Increase padding for better spacing */
+  border-radius: 12px; /* Consistent border radius */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Match card shadow */
+  color: #34495e; /* Text color for consistency */
+}
+#pop-up .container #close-popup {
+  background: none;
+  border: none;
+  color: #00365e;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  float: right;
+}
+#pop-up .container #close-popup:hover {
+  color: #00192b; /* Change color on hover */
+}
+#pop-up .container h2 {
+  text-align: center;
+  font-family: "Maax-Bold"; /* Use the bold font for headings */
+  color: #00365e; /* Title color consistent with header */
+  margin-bottom: 1.5rem; /* Spacing below the title */
+}
+#pop-up .container label {
+  display: block;
+  margin: 1rem 0; /* Space between labels */
+  font-family: "Maax-Medium"; /* Match font style */
+  color: #34495e; /* Consistent text color */
+}
+#pop-up .container button {
+  width: 100%;
+  padding: 0.75rem; /* Increase padding for a more substantial button */
+  background-color: #00365e; /* Button color consistent with dashboard */
+  color: white; /* Text color for button */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#pop-up .container button:hover {
+  background-color: #00192b; /* Consistent hover color */
 }

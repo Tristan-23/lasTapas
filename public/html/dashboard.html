@@ -42,6 +42,9 @@
             <li class="nav-item" data-section=".notes">
               <a>Notes</a>
             </li>
+            <li class="nav-item" data-section=".menu">
+              <a>Menu</a>
+            </li>
             <li class="nav-item" data-section="/storage">
               <a>Storage</a>
             </li>
@@ -241,6 +244,52 @@
           <p>This is where your storage information would be displayed.</p>
         </section>
 
+        <section class="cards" data-section="menu" style="display: none">
+          <h3>Menu Section</h3>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search Menu Items..."
+            class="search-bar"
+          />
+          <button id="add-menu-item-btn" class="action-btn">
+            Add Menu Item
+          </button>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Tags</th>
+                <!-- New column header for tags -->
+                <th>Image</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="menu-items">
+              <tr>
+                <td>1</td>
+                <td>Cheeseburger</td>
+                <td>$9.99</td>
+                <td>
+                  <input
+                    onfocus="openPopUp()"
+                    type="text"
+                    placeholder="Tags (comma-separated)"
+                  />
+                </td>
+                <!-- Input for tags -->
+                <td><input type="file" accept="image/*" /></td>
+                <td>
+                  <button class="edit-btn">Edit</button>
+                  <button class="delete-btn">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
         <section class="cards" data-section="settings" style="display: none">
           <!-- Quick Actions -->
           <div class="settings-actions">
@@ -309,6 +358,18 @@
         </section>
       </main>
     </div>
+
+    <div id="pop-up">
+      <div class="container">
+        <button id="close-popup" type="button">&times;</button>
+        <h2>Dietary Preferences</h2>
+        <form id="dietary-form">
+          <!-- Checkboxes will be dynamically created here -->
+        </form>
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+
     <script src="js/global/cl_request.js"></script>
     <script src="js/cl_dashboard.js"></script>
   </body>
