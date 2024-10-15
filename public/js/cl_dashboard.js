@@ -1,6 +1,4 @@
-const baseUrl = window.location.href.split("/").slice(0, 3).join("/");
-const advancedUrl = baseUrl + "/dashboard";
-
+// Check for localstorage
 document.addEventListener("DOMContentLoaded", () => {
   if (!localStorage.getItem("user")) {
     window.location.href = baseUrl;
@@ -10,42 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
       element.innerHTML + " " + JSON.parse(localStorage.getItem("user")).label;
     element.innerHTML = newText;
   }
+});
 
-  // Dietary preferences array
-  const dietaryPreferences = [
-    { value: "vegan", label: "Vegan" },
-    { value: "vegetarian", label: "Vegetarian" },
-    { value: "gluten-free", label: "Gluten-Free" },
-    { value: "nut-free", label: "Nut-Free" },
-    { value: "keto", label: "Keto" },
-    { value: "paleo", label: "Paleo" },
-    { value: "dairy-free", label: "Dairy-Free" },
-  ];
-
-  // Function to create dietary checkboxes dynamically
-  const createDietaryCheckboxes = () => {
-    const dietaryForm = document.getElementById("dietary-form");
-    dietaryForm.innerHTML = ""; // Clear existing checkboxes
-
-    dietaryPreferences.forEach((preference) => {
-      const label = document.createElement("label");
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.name = "diet";
-      checkbox.value = preference.value;
-
-      label.appendChild(checkbox);
-      label.appendChild(document.createTextNode(preference.label));
-      dietaryForm.appendChild(label);
-      dietaryForm.appendChild(document.createElement("br"));
-    });
-  };
-
-  createDietaryCheckboxes();
-
+// Handle Navbar
+document.addEventListener("DOMContentLoaded", () => {
   const navItems = document.querySelectorAll(".nav-item");
-  const notificationButton = document.querySelector(".notification-btn");
-  const profileButton = document.querySelector(".profile-btn");
 
   const hideAllSections = () => {
     document.querySelectorAll(".cards").forEach((section) => {
@@ -54,13 +21,41 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const selectSection = (section) => {
+    if (!section) {
+      console.warn("Error: No section provided");
+      return;
+    }
+
     hideAllSections();
+
+    console.log(section);
+    switch (section) {
+      case ".all":
+        fetchAllTables();
+        break;
+      case ".menu":
+        initializeMenu();
+        break;
+      case "section3":
+        functionForSection3();
+        break;
+      default:
+        console.warn("Error: No specific function defined for this section");
+    }
+
     if (section.includes("/")) {
       window.location.href = baseUrl + section;
     } else if (section.includes(".")) {
       const target = section.substring(1);
-      document.querySelector(`.cards[data-section="${target}"]`).style.display =
-        "block";
+      const targetSection = document.querySelector(
+        `.cards[data-section="${target}"]`
+      );
+
+      if (targetSection) {
+        targetSection.style.display = "block";
+      } else {
+        console.warn(`Error: Section "${target}" does not exist`);
+      }
     } else {
       console.warn("Error: Invalid section specified");
     }
@@ -75,138 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Menu items array
-  const menuItems = [
-    {
-      id: 1,
-      name: "Cheeseburger",
-      price: 9.99,
-      tags: "Burger, Fast Food",
-      image: "",
-    },
-    {
-      id: 2,
-      name: "Caesar Salad",
-      price: 7.99,
-      tags: "Salad, Healthy",
-      image: "",
-    },
-    {
-      id: 3,
-      name: "Margherita Pizza",
-      price: 11.99,
-      tags: "Pizza, Italian",
-      image: "",
-    },
-  ];
-
-  // Function to populate the menu table
-  const populateMenuTable = () => {
-    const menuItemsTable = document.getElementById("menu-items");
-    menuItemsTable.innerHTML = ""; // Clear existing rows
-    menuItems.forEach((item) => {
-      const newRow = document.createElement("tr");
-      newRow.classList.add("menu-item-row"); // Add a class for easier targeting
-      newRow.innerHTML = `
-        <td>${item.id}</td>
-        <td><input type="text" value="${item.name}" required disabled /></td>
-        <td><input type="number" value="${item.price}" required disabled /></td>
-        <td><input type="text" value="${
-          item.tags
-        }" placeholder="Tags (comma-separated)" disabled /></td>
-        <td>${
-          item.image
-            ? `<img src="${item.image}" alt="${item.name}" style="max-width: 100px;" />`
-            : "No Image"
-        }</td>
-        <td>
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-        </td>
-    `;
-      menuItemsTable.appendChild(newRow);
-
-      // Add event listener for the delete button
-      const deleteBtn = newRow.querySelector(".delete-btn");
-      deleteBtn.addEventListener("click", function () {
-        menuItems.splice(menuItems.indexOf(item), 1); // Remove item from array
-        populateMenuTable(); // Re-populate the table
-      });
-
-      // Add event listener for the edit button
-      const editBtn = newRow.querySelector(".edit-btn");
-      editBtn.addEventListener("click", function () {
-        const inputs = newRow.querySelectorAll("input");
-        const isEditing = editBtn.textContent === "Save";
-
-        inputs.forEach((input) => {
-          input.disabled = isEditing; // Toggle disabled state
-        });
-        editBtn.textContent = isEditing ? "Edit" : "Save";
-
-        if (isEditing) {
-          // Save changes back to the menuItems array
-          item.name = inputs[1].value;
-          item.price = parseFloat(inputs[2].value);
-          item.tags = inputs[3].value;
-          // Handle image upload if necessary
-        }
-      });
-
-      // Show pop-up on focusing the tags input
-      const tagsInput = newRow.querySelector(
-        'input[type="text"][placeholder="Tags (comma-separated)"]'
-      );
-      tagsInput.addEventListener("focus", function () {
-        // Show the pop-up and set checked states
-        document.getElementById("pop-up").style.display = "block"; // Show the pop-up
-        setCheckboxesForItem(item); // Set the checkboxes based on the item's tags
-        // Set the active class on the current row
-        const allRows = document.querySelectorAll("#menu-items tr");
-        allRows.forEach((row) => row.classList.remove("menu-item-row-active")); // Remove active class from all rows
-        newRow.classList.add("menu-item-row-active"); // Set the current row as active
-      });
-    });
-  };
-
-  const setCheckboxesForItem = (item) => {
-    const checkboxes = document.querySelectorAll(
-      '#dietary-form input[type="checkbox"]'
-    );
-    const tags = item.tags.split(", ").map((tag) => tag.toLowerCase().trim());
-
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = tags.includes(checkbox.value);
-    });
-  };
-
-  // Function to handle pop-up submission
-  const handlePopupSubmission = () => {
-    const checkboxes = document.querySelectorAll(
-      '#dietary-form input[type="checkbox"]'
-    );
-    const checkedPreferences = [];
-
-    checkboxes.forEach((checkbox) => {
-      if (checkbox.checked) {
-        checkedPreferences.push(checkbox.value);
-      }
-    });
-
-    // Update the corresponding menu item tag input with the selected preferences
-    const activeRow = document.querySelector(".menu-item-row-active");
-    if (activeRow) {
-      const tagsInput = activeRow.querySelector(
-        'input[placeholder="Tags (comma-separated)"]'
-      );
-      tagsInput.value = checkedPreferences.join(", "); // Update input value
-    }
-
-    document.getElementById("pop-up").style.display = "none"; // Hide the pop-up
-  };
-
-  populateMenuTable(); // Populate the menu items table
-
   navItems.forEach((item) => {
     item.addEventListener("click", (event) => {
       event.stopPropagation();
@@ -219,7 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
         navItems.forEach((nav) => nav.classList.remove("active"));
         item.classList.add("active");
 
-        selectSection(item.dataset.section);
+        const section = item.dataset.section;
+        selectSection(section);
       }
     });
 
@@ -232,25 +96,143 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-
-  // Close the pop-up when clicking outside of it
-  window.addEventListener("click", (event) => {
-    const popUp = document.getElementById("pop-up");
-    if (event.target === popUp) {
-      popUp.style.display = "none"; // Hide the pop-up
-    }
-  });
-
-  // Close the pop-up on button click
-  const closeButton = document.getElementById("close-popup");
-  closeButton.addEventListener("click", () => {
-    document.getElementById("pop-up").style.display = "none"; // Hide the pop-up
-  });
-
-  // Handle pop-up submission
-  const submitButton = document.querySelector("#pop-up button[type='submit']");
-  submitButton.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent the default form submission
-    handlePopupSubmission(); // Handle the pop-up submission
-  });
 });
+
+function fetchAllTables() {}
+
+function initializeMenu() {
+  function populateMenu() {
+    makeServerRequest("fetch", "menu_view", {}).then((data) => {
+      const menuItemsTable = document.getElementById("menu-items");
+      menuItemsTable.innerHTML = "";
+
+      if (data.type === "ERROR") {
+        console.error("Error fetching data:", data.msg);
+        return;
+      } else {
+        data.forEach((item) => {
+          const newRow = document.createElement("tr");
+          newRow.classList.add("menu-item-row");
+
+          newRow.innerHTML = `
+            <td>${item.menu_item_id}</td>
+            <td><input type="text" value="${
+              item.menu_item_name
+            }" required disabled /></td>
+            <td><input type="number" value="${
+              item.menu_item_price
+            }" required disabled /></td>
+            <td><input type="text" value="${
+              item.tag_labels
+            }" placeholder="Tags (comma-separated)" disabled /></td>
+            <td>${
+              item.image
+                ? `<img src="${item.image}" alt="${item.name}" style="max-width: 100px;" />`
+                : "No Image"
+            }</td>
+            <td>
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+            </td>
+          `;
+          menuItemsTable.appendChild(newRow);
+
+          const deleteBtn = newRow.querySelector(".delete-btn");
+          deleteBtn.addEventListener("click", function () {
+            makeServerRequest("delete", "menu_items", { id: item.id }, {}).then(
+              (data) => {
+                if (data.type === "ERROR") {
+                  console.error("Error deleting data:", data.msg);
+                  return;
+                } else {
+                  populateMenu();
+                }
+              }
+            );
+          });
+
+          const editBtn = newRow.querySelector(".edit-btn");
+          editBtn.addEventListener("click", function () {
+            const inputs = newRow.querySelectorAll("input");
+            const isEditing = editBtn.textContent === "Save";
+
+            inputs.forEach((input) => {
+              input.disabled = isEditing;
+            });
+            editBtn.textContent = isEditing ? "Edit" : "Save";
+
+            if (isEditing) {
+              makeServerRequest(
+                "update",
+                "menu_items",
+                { id: item.id },
+                {
+                  name: inputs[0].value,
+                  price: parseFloat(inputs[1].value),
+                  tags: inputs[2].value,
+                }
+              ).then((data) => {
+                if (data.type === "ERROR") {
+                  console.error("Error updating data:", data.msg);
+                  return;
+                } else {
+                  populateMenu();
+                }
+              });
+            }
+          });
+
+          const tagsInput = newRow.querySelector(
+            'input[type="text"][placeholder="Tags (comma-separated)"]'
+          );
+          tagsInput.addEventListener("focus", function () {
+            const dietaryForm = document.getElementById("dietary-form");
+            dietaryForm.innerHTML = ""; // Clear previous entries
+
+            makeServerRequest("fetch", "menu_tags", {}).then((data) => {
+              if (data.type === "ERROR") {
+                console.error("Error fetching tags:", data.msg);
+                return;
+              } else {
+                const selectedTags = item.tag_labels
+                  .split(",")
+                  .map((tag) => tag.trim());
+
+                data.forEach((tag) => {
+                  const label = document.createElement("label");
+                  const checkbox = document.createElement("input");
+                  checkbox.type = "checkbox";
+                  checkbox.value = tag.id;
+
+                  checkbox.checked = selectedTags.includes(tag.label);
+
+                  label.appendChild(checkbox);
+                  label.appendChild(document.createTextNode(tag.label));
+
+                  dietaryForm.appendChild(label);
+                });
+              }
+            });
+
+            // Show the popup
+            document.getElementById("pop-up").style.display = "block";
+            document.getElementById("pop-up").dataset.itemId = item.id;
+          });
+
+          // End off buttons
+        });
+      }
+    });
+  }
+
+  populateMenu();
+
+  document.getElementById("close-popup").addEventListener("click", () => {
+    document.getElementById("pop-up").style.display = "none";
+  });
+
+  document.getElementById("pop-up").addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log("Form submitted");
+  });
+}

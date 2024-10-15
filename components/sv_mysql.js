@@ -186,11 +186,11 @@ class DbService {
         };
       }
 
-      const setValues = Object.entries(data)
+      const setValues = Object.entries(change)
         .map(([key, value]) => `${key} = ${mysql.escape(value)}`)
         .join(", ");
 
-      const whereClause = Object.entries(change)
+      const whereClause = Object.entries(data)
         .map(([key, value]) => `${key} = ${mysql.escape(value)}`)
         .join(" AND ");
 
